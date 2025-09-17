@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión para Carrito Cafetero</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            color: #8B4513;
+            border-bottom: 2px solid #D2B48C;
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            color: #A0522D;
+        }
+        
+        .university {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .course-info {
+            background-color: #F5DEB3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .team-member {
+            background-color: #FFF8DC;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #D2B48C;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #8B4513;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #FFF8DC;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #F5DEB3;
+        }
+        
+        .db-metaphor {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 25px 0;
+        }
+        
+        .db-card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #8B4513;
+        }
+        
+        .db-card h4 {
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .db-card ul {
+            list-style-type: none;
+        }
+        
+        .db-card li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .db-card li:before {
+            content: "•";
+            color: #8B4513;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .recommendation {
+            background-color: #F5DEB3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .recommendation h3 {
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .code-block {
+                padding: 15px;
+                font-size: 0.85rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>UNIVERSIDAD ANDINA DEL CUSCO</h1>
+        <p class="university">FACULTAD DE INGENIERÍA Y ARQUITECTURA</p>
+        <h2>Taller 1.3: Implementación de Modelos Físicos</h2>
+    </header>
+
+    <div class="course-info">
+        <h3>Curso:</h3>
+        <p>Modelado de Base de Datos</p>
+        
+        <h3>Docente:</h3>
+        <p>Hugo Espetia Huamanga</p>
+        
+        <h3>Equipo de Desarrollo:</h3>
+        <p>Los Dogs</p>
+    </div>
+
+    <div class="team-info">
+        <div class="team-member">
+            <h3>Alumnos:</h3>
+            <p>Callo Gastañaga Carlos Eduardo (100%)</p>
+            <p>Huaman Sanchez Rivaldo (SM) (100%)</p>
+            <p>Pancca Tinta Sergio Reynaldo (100%)</p>
+        </div>
+        
+        <div class="team-member">
+            <h3>Lugar y fecha:</h3>
+            <p>Cusco - Perú</p>
+            <p>2025</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Introducción</h2>
+        <p>El presente documento describe el diseño, desarrollo e implementación de un sistema de gestión de ventas para un carrito cafetero, creado a partir de un modelo entidad-relación diseñado en Lucidchart. El sistema ha sido implementado en cuatro motores de bases de datos relacionales: SQL Server, MySQL, Oracle y PostgreSQL, demostrando la portabilidad del diseño across diferentes plataformas tecnológicas.</p>
+        
+        <p>El carrito cafetero como modelo de negocio requiere una gestión eficiente de inventario, proveedores, personal y transacciones de venta. La digitalización de estos procesos mediante un sistema de base de datos relacional permite optimizar las operaciones, reducir errores manuales y proporcionar información valiosa para la toma de decisiones.</p>
+        
+        <p>El objetivo principal fue desarrollar un esquema de base de datos normalizado que pudiera ser implementado en múltiples sistemas gestores de bases de datos (DBMS), asegurando consistencia en los datos y facilitando migraciones futuras entre plataformas.</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Desarrollo</h2>
+        <p>El proceso inició con el diseño del diagrama entidad-relación en Lucidehart, identificando las entidades principales:</p>
+        
+        <ul>
+            <li>Personal (empleados que atienden y compran)</li>
+            <li>Proveedor (suministradores de productos)</li>
+            <li>Cliente (consumidores frecuentes)</li>
+            <li>Producto (inventario del carrito)</li>
+            <li>Boleta (transacciones de venta)</li>
+            <li>DetalleBoleta (ítems vendidos)</li>
+        </ul>
+        
+        <p>Ahora se implementara la base de datos en las siguientes gestores y se realizara una comparación entre los scrip de los 4 gestores.</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Código en SQL Server</h2>
+        <div class="code-block">
+-- Base del CARRITO CAFETERO
+-- Log Dog
+-- 10/03/2025
+use master
+go
+if DB_ID('SistemaVentas') is not null
+drop database SistemaVentas
+go
+create database SistemaVentas
+go
+use SistemaVentas
+go
+
+-- Tabla Personal
+if OBJECT_ID('Personal') is not null
+drop table Personal
+go
+CREATE TABLE Personal (
+    idPersonal varchar(50) primary key,
+    cargoE varchar(50),
+    nombreP varchar(100)
+);
+go
+
+-- Tabla Proveedor
+if OBJECT_ID('Proveedor') is not null
+drop table Proveedor
+go
+CREATE TABLE Proveedor (
+    idProveedor varchar(50) primary key,
+    nombreP varchar(100),
+    tipoP varchar(50)
+);
+go
+
+-- Tabla Cliente
+if OBJECT_ID('Cliente') is not null
+drop table Cliente
+go
+CREATE TABLE Cliente (
+    idClienteC varchar(50) primary key,
+    nombreC varchar(100),
+    telefonoC varchar(20)
+);
+go
+
+-- Tabla Producto (CORREGIDA: se eliminó la relación con Personal)
+if OBJECT_ID('Producto') is not null
+drop table Producto
+go
+CREATE TABLE Producto (
+    idProductoP varchar(50) primary key,
+    nombreP varchar(100),
+    tipoP varchar(50),
+    precioP numeric(10,2),
+    stockP int,
+    idProveedor varchar(50),
+    foreign key (idProveedor) references Proveedor(idProveedor)
+    -- Se eliminó: idPersonalCompra y su foreign key
+);
+go
+
+-- Tabla Boleta
+if OBJECT_ID('Boleta') is not null
+drop table Boleta
+go
+CREATE TABLE Boleta (
+    IdB varchar(50) primary key,
+    idEmpleadoB varchar(50) not null,
+    idClienteB varchar(50) not null,
+    FechaB date,
+    HoraB time,
+    foreign key (idEmpleadoB) references Personal(idPersonal),
+    foreign key (idClienteB) references Cliente(idClienteC)
+);
+go
+
+-- Tabla DetalleBoleta
+if OBJECT_ID('DetalleBoleta') is not null
+drop table DetalleBoleta
+go
+CREATE TABLE DetalleBoleta (
+    idDetalleDB varchar(50) primary key,
+    idBoletaDB varchar(50) not null,
+    idProductoDB varchar(50) not null,
+    cantidadDB int,
+    foreign key (idBoletaDB) references Boleta(IdB),
+    foreign key (idProductoDB) references Producto(idProductoP)
+);
+go
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Código en Oracle</h2>
+        <div class="code-block">
+-- Base del CARRITO CAFETERO
+-- Log Dog
+-- 10/03/2025
+-- Eliminar tablas en orden inverso (por dependencias)
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE DetalleBoleta CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Boleta CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Producto CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Cliente CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Proveedor CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Personal CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
+-- Crear tabla Personal
+CREATE TABLE Personal (
+    idPersonal VARCHAR2(50) PRIMARY KEY,
+    cargoE VARCHAR2(50),
+    nombreP VARCHAR2(100)
+);
+/
+
+-- Crear tabla Proveedor
+CREATE TABLE Proveedor (
+    idProveedor VARCHAR2(50) PRIMARY KEY,
+    nombreP VARCHAR2(100),
+    tipoP VARCHAR2(50)
+);
+/
+
+-- Crear tabla Cliente
+CREATE TABLE Cliente (
+    idClienteC VARCHAR2(50) PRIMARY KEY,
+    nombreC VARCHAR2(100),
+    telefonoC VARCHAR2(20)
+);
+/
+
+-- Crear tabla Producto (CORREGIDA: se eliminó la relación con Personal)
+CREATE TABLE Producto (
+    idProductoP VARCHAR2(50) PRIMARY KEY,
+    nombreP VARCHAR2(100),
+    tipoP VARCHAR2(50),
+    precioP NUMBER(10,2),
+    stockP NUMBER(10),
+    idProveedor VARCHAR2(50),
+    CONSTRAINT fk_producto_proveedor FOREIGN KEY (idProveedor) REFERENCES Proveedor(idProveedor)
+    -- Se eliminó: idPersonalCompra y su constraint fk_producto_personal
+);
+/
+
+-- Crear tabla Boleta
+CREATE TABLE Boleta (
+    IdB VARCHAR2(50) PRIMARY KEY,
+    idEmpleadoB VARCHAR2(50) NOT NULL,
+    idClienteB VARCHAR2(50) NOT NULL,
+    FechaB DATE,
+    HoraB VARCHAR2(8), -- Oracle no tiene tipo TIME, usamos VARCHAR2 o DATE completo
+    CONSTRAINT fk_boleta_personal FOREIGN KEY (idEmpleadoB) REFERENCES Personal(idPersonal),
+    CONSTRAINT fk_boleta_cliente FOREIGN KEY (idClienteB) REFERENCES Cliente(idClienteC)
+);
+/
+
+-- Crear tabla DetalleBoleta
+CREATE TABLE DetalleBoleta (
+    idDetalleDB VARCHAR2(50) PRIMARY KEY,
+    idBoletaDB VARCHAR2(50) NOT NULL,
+    idProductoDB VARCHAR2(50) NOT NULL,
+    cantidadDB NUMBER(10),
+    CONSTRAINT fk_detalle_boleta FOREIGN KEY (idBoletaDB) REFERENCES Boleta(IdB),
+    CONSTRAINT fk_detalle_producto FOREIGN KEY (idProductoDB) REFERENCES Producto(idProductoP)
+);
+/
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Código en MySQL</h2>
+        <div class="code-block">
+DROP DATABASE IF EXISTS SistemaVentas;
+CREATE DATABASE SistemaVentas;
+USE SistemaVentas;
+
+DROP TABLE IF EXISTS DetalleBoleta;
+DROP TABLE IF EXISTS Boleta;
+DROP TABLE IF EXISTS Producto;
+DROP TABLE IF EXISTS Cliente;
+DROP TABLE IF EXISTS Proveedor;
+DROP TABLE IF EXISTS Personal;
+
+CREATE TABLE Personal (
+  idPersonal VARCHAR(50) PRIMARY KEY,
+  cargoE VARCHAR(50),
+  nombreP VARCHAR(100)
+);
+
+CREATE TABLE Proveedor (
+  idProveedor VARCHAR(50) PRIMARY KEY,
+  nombreP VARCHAR(100),
+  tipoP VARCHAR(50)
+);
+
+CREATE TABLE Cliente (
+  idClienteC VARCHAR(50) PRIMARY KEY,
+  nombreC VARCHAR(100),
+  telefonoC VARCHAR(20)
+);
+
+CREATE TABLE Producto (
+  idProductoP VARCHAR(50) PRIMARY KEY,
+  nombreP VARCHAR(100),
+  tipoP VARCHAR(50),
+  precioP DECIMAL(10,2),
+  stockP INT,
+  idProveedor VARCHAR(50),
+  FOREIGN KEY (idProveedor) REFERENCES Proveedor(idProveedor)
+  -- Se eliminó: idPersonalCompra y su FOREIGN KEY
+);
+
+CREATE TABLE Boleta (
+  IdB VARCHAR(50) PRIMARY KEY,
+  idEmpleadoB VARCHAR(50) NOT NULL,
+  idClienteB VARCHAR(50) NOT NULL,
+  FechaB DATE,
+  HoraB TIME,
+  FOREIGN KEY (idEmpleadoB) REFERENCES Personal(idPersonal),
+  FOREIGN KEY (idClienteB) REFERENCES Cliente(idClienteC)
+);
+
+CREATE TABLE DetalleBoleta (
+  idDetalleDB VARCHAR(50) PRIMARY KEY,
+  idBoletaDB VARCHAR(50) NOT NULL,
+  idProductoDB VARCHAR(50) NOT NULL,
+  cantidadDB INT,
+  FOREIGN KEY (idBoletaDB) REFERENCES Boleta(IdB),
+  FOREIGN KEY (idProductoDB) REFERENCES Producto(idProductoP)
+);
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Código en PostgreSQL</h2>
+        <div class="code-block">
+-- Eliminar tablas si existen (orden correcto para evitar errores por FK)
+DROP TABLE IF EXISTS detalleboleta CASCADE;
+DROP TABLE IF EXISTS boleta CASCADE;
+DROP TABLE IF EXISTS producto CASCADE;
+DROP TABLE IF EXISTS cliente CASCADE;
+DROP TABLE IF EXISTS proveedor CASCADE;
+DROP TABLE IF EXISTS personal CASCADE;
+
+-- Crear tabla personal
+CREATE TABLE personal (
+    idpersonal VARCHAR(50) PRIMARY KEY,
+    cargoe VARCHAR(50),
+    nombrep VARCHAR(100)
+);
+
+-- Crear tabla proveedor
+CREATE TABLE proveedor (
+    idproveedor VARCHAR(50) PRIMARY KEY,
+    nombrep VARCHAR(100),
+    tipop VARCHAR(50)
+);
+
+-- Crear tabla cliente
+CREATE TABLE cliente (
+    idclientec VARCHAR(50) PRIMARY KEY,
+    nombrec VARCHAR(100),
+    telefonoc VARCHAR(20)
+);
+
+-- Crear tabla producto SIN columna ni FK a personal
+CREATE TABLE producto (
+    idproductop VARCHAR(50) PRIMARY KEY,
+    nombrep VARCHAR(100),
+    tipop VARCHAR(50),
+    preciop NUMERIC(10,2),
+    stockp INT,
+    idproveedor VARCHAR(50),
+    FOREIGN KEY (idproveedor) REFERENCES proveedor(idproveedor)
+);
+
+-- Crear tabla boleta
+CREATE TABLE boleta (
+    idb VARCHAR(50) PRIMARY KEY,
+    idempleadob VARCHAR(50) NOT NULL,
+    idclienteb VARCHAR(50) NOT NULL,
+    fechab DATE,
+    horab TIME,
+    FOREIGN KEY (idempleadob) REFERENCES personal(idpersonal),
+    FOREIGN KEY (idclienteb) REFERENCES cliente(idclientec)
+);
+
+-- Crear tabla detalleboleta
+CREATE TABLE detalleboleta (
+    iddetalledb VARCHAR(50) PRIMARY KEY,
+    idboletadb VARCHAR(50) NOT NULL,
+    idproductodb VARCHAR(50) NOT NULL,
+    cantidaddb INT,
+    FOREIGN KEY (idboletadb) REFERENCES boleta(idb),
+    FOREIGN KEY (idproductodb) REFERENCES producto(idproductop)
+);
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Diferencias Sintácticas y Funcionales entre SGBD</h2>
+        
+        <table class="comparison-table">
+            <tr>
+                <th>Característica</th>
+                <th>SQL Server</th>
+                <th>MySQL</th>
+                <th>Oracle</th>
+                <th>PostgreSQL</th>
+            </tr>
+            <tr>
+                <td>Dueño</td>
+                <td>Microsoft</td>
+                <td>Comunidad (Oracle)</td>
+                <td>Oracle</td>
+                <td>Comunidad</td>
+            </tr>
+            <tr>
+                <td>Costo</td>
+                <td>Pago (caro)</td>
+                <td>Gratuito</td>
+                <td>Muy caro</td>
+                <td>Gratuito</td>
+            </tr>
+            <tr>
+                <td>Facilidad de uso</td>
+                <td>Fácil para Windows</td>
+                <td>Muy fácil</td>
+                <td>Complejo</td>
+                <td>Intermedio</td>
+            </tr>
+            <tr>
+                <td>Velocidad</td>
+                <td>Muy rápida</td>
+                <td>Rápida</td>
+                <td>Extremadamente rápida</td>
+                <td>Muy rápida</td>
+            </tr>
+            <tr>
+                <td>Seguridad</td>
+                <td>Muy segura</td>
+                <td>Buena</td>
+                <td>Excelente</td>
+                <td>Muy buena</td>
+            </tr>
+            <tr>
+                <td>Tamaño recomendado</td>
+                <td>Medianas a grandes empresas</td>
+                <td>Pequeñas a medianas</td>
+                <td>Grandes empresas</td>
+                <td>Todo tamaño</td>
+            </tr>
+            <tr>
+                <td>Soporte técnico</td>
+                <td>Oficial de Microsoft</td>
+                <td>Comunidad y pagado</td>
+                <td>Oficial de Oracle</td>
+                <td>Comunidad</td>
+            </tr>
+            <tr>
+                <td>Idioma</td>
+                <td>Inglés (mayúsculas/minúsculas no importan)</td>
+                <td>Configurable</td>
+                <td>Inglés (importan mayúsculas)</td>
+                <td>Inglés (importan mayúsculas)</td>
+            </tr>
+            <tr>
+                <td>Popularidad</td>
+                <td>Muy popular en empresas</td>
+                <td>El más popular del mundo</td>
+                <td>Popular en grandes compañías</td>
+                <td>Popular en tech</td>
+            </tr>
+            <tr>
+                <td>Comunidad de ayuda</td>
+                <td>Muy grande</td>
+                <td>Enorme</td>
+                <td>Grande</td>
+                <td>Muy activa</td>
+            </tr>
+            <tr>
+                <td>Windows</td>
+                <td>Excelente</td>
+                <td>Bueno</td>
+                <td>Bueno</td>
+                <td>Bueno</td>
+            </tr>
+            <tr>
+                <td>Linux</td>
+                <td>Regular</td>
+                <td>Excelente</td>
+                <td>Excelente</td>
+                <td>Excelente</td>
+            </tr>
+            <tr>
+                <td>Nube</td>
+                <td>Azure (excelente)</td>
+                <td>Todas las nubes</td>
+                <td>Oracle Cloud</td>
+                <td>Todas las nubes</td>
+            </tr>
+            <tr>
+                <td>Copias de seguridad</td>
+                <td>Muy fáciles</td>
+                <td>Fáciles</td>
+                <td>Complejas</td>
+                <td>Intermedias</td>
+            </tr>
+            <tr>
+                <td>Curva de aprendizaje</td>
+                <td>Suave</td>
+                <td>Muy suave</td>
+                <td>Empinada</td>
+                <td>Intermedia</td>
+            </tr>
+        </table>
+        
+        <h3>Comparación mediante metáforas:</h3>
+        
+        <div class="db-metaphor">
+            <div class="db-card">
+                <h4>SQL Server = Camioneta de lujo</h4>
+                <ul>
+                    <li>Marca: Microsoft</li>
+                    <li>Costo: Alto (como una camioneta nueva)</li>
+                    <li>Para quién: Empresas que usan Windows</li>
+                    <li>Ventaja: Muy cómoda y todo integrado</li>
+                    <li>Desventaja: Cara de mantener</li>
+                </ul>
+            </div>
+            
+            <div class="db-card">
+                <h4>MySQL = Mototaxi popular</h4>
+                <ul>
+                    <li>Marca: Comunidad (ahora de Oracle)</li>
+                    <li>Costo: Gratuito o muy barato</li>
+                    <li>Para quién: Pequeños negocios y startups</li>
+                    <li>Ventaja: Económico y todos saben usarlo</li>
+                    <li>Desventaja: No es para cargas muy pesadas</li>
+                </ul>
+            </div>
+            
+            <div class="db-card">
+                <h4>Oracle = Tractomula de carga</h4>
+                <ul>
+                    <li>Marca: Oracle</li>
+                    <li>Costo: Muy alto (como un trailer nuevo)</li>
+                    <li>Para quién: Grandes corporaciones y bancos</li>
+                    <li>Ventaja: Aguanta toneladas de información</li>
+                    <li>Desventaja: Solo para expertos y muy caro</li>
+                </ul>
+            </div>
+            
+            <div class="db-card">
+                <h4>PostgreSQL = Campero todoterreno</h4>
+                <ul>
+                    <li>Marca: Comunidad</li>
+                    <li>Costo: Gratuito</li>
+                    <li>Para quién: Gente que necesita potencia gratis</li>
+                    <li>Ventaja: Potente y sin pagar licencia</li>
+                    <li>Desventaja: Un poco más complicado de aprender</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="recommendation">
+            <h3>¿Cuál le queda mejor a tu carrito cafetero?</h3>
+            <p>Si empiezas → MySQL (como mototaxi, te lleva gratis)</p>
+            <p>Si creces → PostgreSQL (como campero, más potencia sin pagar)</p>
+            <p>Si eres franquicia → SQL Server (camioneta cómoda para varias sucursales)</p>
+            <p>Si eres un gran chain → Oracle (tractomula para miles de ventas diarias)</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Conclusiones y sugerencias</h2>
+        <p>El sistema de gestión para carrito cafetero demostró ser portable en cuatro gestores de bases de datos, validando su diseño robusto y escalable. Para implementación inicial se recomienda MySQL por su costo cero y facilidad de uso, ideal para pequeños emprendimientos.</p>
+        
+        <p>PostgreSQL representa la mejor opción de crecimiento al ofrecer características avanzadas sin costos de licencia. Se sugiere agregar campos de auditoría e implementar respaldos automáticos desde el inicio. El sistema está preparado para escalar desde un solo carrito hasta una cadena de múltiples sucursales, adaptándose progresivamente a las necesidades del negocio sin requerir rediseños mayores.</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Bibliografía</h2>
+        <p>Callo Gastañaga, C. E., Huaman Sanchez, R. y Pancea Tinta, S. R. (2025). Sistema de Gestión para Carrito Cafetero: Implementación Multi-SGBD. Universidad Andina del Cusco, Cusco, Perú.</p>
+        
+        <p>Microsoft. (2023). Documentación de SQL Server: Recuperado de https://learn.microsoft.com/es-es/sql/sql-server</p>
+        
+        <p>Oracle Corporation. (2023). Manual de Referencia de MySQL 8.0. Recuperado de https://dev.mysql.com/doc/refman/8.0/es/</p>
+        
+        <p>Oracle Corporation. (2023). Documentación de Oracle Database. Recuperado de https://docs.oracle.com/en/database/</p>
+        
+        <p>PostgreSQL Global Development Group. (2023). Documentación de PostgreSQL 15.2. Recuperado de https://www.postgresql.org/docs/15/index.html</p>
+    </div>
+
+    <footer>
+        <p>© 2025 - Universidad Andina del Cusco - Facultad de Ingeniería y Arquitectura</p>
+        <p>Equipo de Desarrollo: Los Dogs</p>
+    </footer>
+</body>
+</html>
